@@ -11,7 +11,7 @@
 //声明变量abc值为16,靠属性名对应
 let {age:abc} = {aaa:18,age :16};
 console.log(abc);
-//使用对象结构是根据左右两侧的属性来对应的
+//使用对象解构是根据左右两侧的属性来对应的
 //数组解构是根据左右两侧的索引值一一对应的
 
 
@@ -30,10 +30,10 @@ console.log(name,age);//undefined 16
 
 
 //扩展
-var {name,age,childs} ={name:'小明',age:16,childs:{name:'小小明',age:10}}
-console.log(name);
-console.log(age);
-console.log(childs);
+// var {name,age,childs} ={name:'小明',age:16,childs:{name:'小小明',age:10}}
+// console.log(name);
+// console.log(age);
+// console.log(childs);
 
 
 var {name,age,childs:{name,age}} ={name:'小明',age:16,childs:{name:'小小明',age:10}}

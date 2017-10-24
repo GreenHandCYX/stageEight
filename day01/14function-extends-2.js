@@ -6,4 +6,3 @@ function sayHi(name,age,...gender){
     console.log(gender);
 }
 sayHi('小红',16,'女',98);
-sayHi('小红',16,'女',98);
