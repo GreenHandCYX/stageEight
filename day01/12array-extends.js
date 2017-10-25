@@ -17,11 +17,11 @@ var arr = ['a','b','c'];
 //     console.log(key,val)
 // })
 //返回满足条件的项
-// var res = arr.find(function(val,key){
-//     // console.log(key,val)
-//     return val > 'a';
-// })
-// console.log(res);
+var res = arr.find(function(val,key){
+    // console.log(key,val)
+    return val > 'a';
+})
+console.log(res);
 //返回满足条件的项的索引
 var k = arr.findIndex(function(val,key){
     // console.log(key,val)

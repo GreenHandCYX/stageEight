@@ -9,6 +9,6 @@
 //require需传入系统模块的名称,并会得到一个返回值
 let os = require('os');
 // console.log(os)
-// console.log(os.hostname());
-// console.log(os.cpus());
-console.log(os.userInfo());
+console.log(os.hostname());
+console.log(os.cpus());
+// console.log(os.userInfo());
