@@ -10,6 +10,7 @@ let path = require('path');
 //引入文件模块mime判断请求文件的MIME类型
 let mime = require('mime');
 
+require('./test.json');
 
 //创建服务器
 let server = http.createServer();

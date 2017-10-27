@@ -24,7 +24,7 @@ console.log(users);
 //在使用require时,如果没有使用./或../会优先去node_modules下查找,
 //若找不到再查找父级目录中的node_modules,
 //如果存在,则在父级的node_modules下查找,
-//若不存在则再上一级
+//若不存在则再上一级（只指一级父目录）
 //以此类推若一直未找到node_modules则视为系统模块
 require('02test');
 
