@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="child">
+            <p class="ssss">一些内容</p>
+        </div>
+    </div>
+    <p>另一个内容</p>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script>
+        // 通过 $ 或 jQuery 函数可以获得一个对象
+        // 将这个对象称为 jQuery 对象
+        // jQuery 对象既包含了原生DOM，又包含了操作 原生DOM的方法
+        
+        // console.log($('.box'));
+
+        // $('.box').css('');
+
+        // 如果想要操作DOM应该怎么办
+        // 找操作DOM的方法
+        // 方法在 jQuery 对象上
+        // 如何获得一个 jQuery 对象呢？
+        // 调用 $ 或 jQuery
+        
+        // 如何获得jQuery对象
+        
+        // 1、为 $ 函数传一个 选择器
+        // 2、为 $ 函数传一个 原生DOM
+        var box = document.querySelector('.box');
+        // $(box).html('测试');
+
+        $('.box').on('click', function () {
+            // 原生DOM
+            console.log(this);
+            // jQuery 对象
+            // $(this);
+        })
+
+        // 3、为 $ 函数传入一个 html 字符串
+        // $('<h1>测试呀</h1>');
+
+        // 链式操作
+        // $('.box').css('color', 'red')
+        // $('.box').find('.child').find('p').css().end().end().css();
+        // 
+        
+        // $('.box').append('<h1>测试</h1>').css('border', '1px solid red');
+
+        // var abc = $('<h1>测试</h1>').appendTo('.box');
+        // console.log(abc)
+        
+
+        // 关 $ 的用法
+        
+        // $ 函数其实需要两个参数
+        $('p', '.box').css('color', 'red');
+    </script>
+</body>
+</html>
