@@ -23,10 +23,10 @@
 	</div>
 	<div id="main">
 		## each list ##
-		<dl class="paper a## $index%5+1 ##">
+		<dl class="paper a## $value.random ##">
 			<dt>
 				<span class="username">## $value.username ##</span>
-				<span class="num">## $value.no ##</span>
+				<span class="num">NO.## $value.no ##</span>
 			</dt>
 			<dd class="content">## $value.content ##</dd>
 			<dd class="bottom">
@@ -68,10 +68,10 @@
 			</span>
 		</form>
 		<script type="text/template" id="tpl">
-			<dl class="paper a1">
+			<dl class="paper a{{random}}">
 					<dt>
 						<span class="username">{{username}}</span>
-						<span class="num">{{no}}</span>
+						<span class="num">NO.{{no}}</span>
 					</dt>
 					<dd class="content">{{content}}</dd>
 					<dd class="bottom">

@@ -14,9 +14,8 @@ var concat = require('gulp-concat');
 gulp.task('less2css',function(){
     //只要将任务执行就可以实现了
     console.log('css转换成功');
-
     //通过gulp.src指定需要将那些资源进行转换(路径)
-    //通过模块gulp-less来实现真正的转换,需要通过pipe传递给less,再通过gulp.dest将处理后的文件放置在./css文件下
+    //通过模块gulp-less来实现真正的转换,需要通过pipe传递给less,再通过gulp.dest将处理后的文件放置在./css文件（不存在该文件会自动创建）下
     gulp.src('./less/*.less').pipe(less()).pipe(gulp.dest('./css'));
    
 })

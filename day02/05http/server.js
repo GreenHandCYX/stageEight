@@ -77,7 +77,7 @@ server.on('request',(req,res)=>{
     console.log('我是请求地址',req.url);
     console.log('我是请求方式',req.method);
     console.log('我是请求头',req.headers);
-    console.log('我是gec处理过的请求参数',url.parse(req.url,true).query);
+    console.log('我是get处理过的请求参数',url.parse(req.url,true).query);
 
 
     var postdata = '';

@@ -52,6 +52,12 @@ app.on('request',(req,res)=>{
             db.query('SELECT * FROM lists',(err,rows)=>{
                 if(!err){
                     //rows是一个数组
+                     //在渲染前处理时间差
+                   rows.forEach(function(ele) {
+                    ele.datetime = moment(ele.datetime,"YYYY-MM-DD HH:mm:ss").fromNow();
+                    ele.random =  Math.floor(Math.random()*5)+1;   
+                   });
+
                    res.render('index',{list:rows})
                 }
             })  
@@ -60,7 +66,7 @@ app.on('request',(req,res)=>{
             //添加
             //需要后台添加no和datetime，datetime需要用moment.js模块来返回时差
             query.no = Math.ceil(Math.random()*100000);  
-            query.datetime = moment("2017-10-28 19:43:00","YYYY-MM-DD HH:mm:ss").toNow();
+            query.datetime = new Date();
              db.query('INSERT INTO lists set ?',query,(err)=>{
                 if(!err){
                     
@@ -68,6 +74,11 @@ app.on('request',(req,res)=>{
                     res.writeHeader(200,{
                         'Content-Type':'application/json'
                     }) 
+                    //在渲染前处理时间差
+                    query.datetime = moment(query.datetime,"YYYY-MM-DD HH:mm:ss").fromNow();
+                    //控制随机显示颜色
+                    query.random =  Math.floor(Math.random()*5)+1; 
+                   
                     //返回一个含反馈信息的对象更易于操作，转为json格式
                     res.end(JSON.stringify({
                         code:10000,
