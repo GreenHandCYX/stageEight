@@ -15,14 +15,14 @@
             <div class="wrapper">
                 <!-- 导航 -->
                 <nav>
-                    <a href="/home/index">Home</a>
-                    <a href="/home/about">关于我们</a>
-                    <a href="/home/join">传智招聘</a>
+                    <a href="/">Home</a>
+                    <a href="/about">关于我们</a>
+                    <a href="/join">传智招聘</a>
                 </nav>
                 <!-- 注册/登录 -->
                 <div class="extra">
-                    <a href="/home/register">注册</a>
-                    <a href="/home/login">登录</a>
+                    <a href="/register">注册</a>
+                    <a href="/login">登录</a>
                 </div>
             </div>
         </header>
@@ -45,34 +45,34 @@
                         <header>热门文章</header>
                         <ul>
                             <li>
-                                <a href="/home/article">WeUI 发布——微信官方UI库</a>
+                                <a href="/article">WeUI 发布——微信官方UI库</a>
                             </li>
                             <li>
-                                <a href="/home/article">Zen Coding: 一种快速编写HTML/CSS代码的方法</a>
+                                <a href="/article">Zen Coding: 一种快速编写HTML/CSS代码的方法</a>
                             </li>
                             <li>
-                                <a href="/home/article">QQ浏览器X5内核问题汇总</a>
+                                <a href="/article">QQ浏览器X5内核问题汇总</a>
                             </li>
                             <li>
-                                <a href="/home/article">一些必不可少的Sublime Text 2插件</a>
+                                <a href="/article">一些必不可少的Sublime Text 2插件</a>
                             </li>
                             <li>
-                                <a href="/home/article">高性能 CSS3 动画</a>
+                                <a href="/article">高性能 CSS3 动画</a>
                             </li>
                             <li>
-                                <a href="/home/article">[Task Master] gulp-lint</a>
+                                <a href="/article">[Task Master] gulp-lint</a>
                             </li>
                             <li>
-                                <a href="/home/article">前端观察又改版</a>
+                                <a href="/article">前端观察又改版</a>
                             </li>
                             <li>
-                                <a href="/home/article">HTML5+CSS3 loading 效果收集</a>
+                                <a href="/article">HTML5+CSS3 loading 效果收集</a>
                             </li>
                             <li>
-                                <a href="/home/article">meta标签常用属性整理</a>
+                                <a href="/article">meta标签常用属性整理</a>
                             </li>
                             <li>
-                                <a href="/home/article">HTML5 中 div section article 的区别</a>
+                                <a href="/article">HTML5 中 div section article 的区别</a>
                             </li>
                         </ul>
                     </div>
@@ -81,25 +81,25 @@
                         <header>热门博主</header>
                         <ul>
                             <li>
-                                <a href="/home/center">
+                                <a href="/center">
                                     <img src="/home/uploads/avatar/botue.jpg" alt="">
                                     <span>老布头儿</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/home/center">
+                                <a href="/center">
                                     <img src="/home/uploads/avatar/monkey.png" alt="">
                                     <span>程序猿</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/home/center">
+                                <a href="/center">
                                     <img src="/home/uploads/avatar/botue.jpg" alt="">
                                     <span>老布头儿</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/home/center">
+                                <a href="/center">
                                     <img src="/home/uploads/avatar/monkey.png" alt="">
                                     <span>程序猿</span>
                                 </a>
