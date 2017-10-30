@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="./css/main.css">
+
+</head>
+<body>
+	<!-- 顶部导航 -->
+	<div class="topnav">
+		<dl class="wrap">
+			<dt>次碳酸钴的技术博客，文章原创，转载请保留原文链接 ^_^</dt>
+			<dd>
+				<a href="javascript:;" class="rss"></a>
+				<a href="javascript:;" class="share"></a>
+				<a href="javascript:;" class="setting"></a>
+				<a href="javascript:;" class="network"></a>
+			</dd>
+		</dl>
+	</div>
+	<!-- 头部 -->
+	<header>
+		<div class="wrap">
+			<h2 class="logo">
+				<a href="javascript:;">Web技术研究所</a>
+				<small>我一直坚信着，Web将会成为未来应用程序的主流</small>
+			</h2>
+			<!-- 导航 -->
+			<nav>
+				{{#each (navs)}}
+				{{#if (this===active)}}
+				<a href="javascript:;" class="active">{{this}}</a>
+				{{else}}
+				<a href="javascript:;">{{this}}</a>
+				{{/if}}
+				{{/each}}
+			</nav>
+		</div>
+	</header>
+	<!-- 主体 -->
+	<div class="main wrap">
+		<!-- 侧边栏 -->
+		<aside>
+			<!-- 搜索框 -->
+			<section class="search">
+				<a href="javascript:;">搜</a>
+				<input type="search" placeholder="请输入搜索内容">
+			</section>
+			<section class="theme">
+				<header>神奇海螺</header>
+			</section>
+			<!-- 评论 -->
+			<section class="discuss">
+				<header>最新评论</header>
+				<article></article>
+				<article></article>
+				<article></article>
+				<article></article>
+				<article></article>
+			</section>
+			<section class="discuss">
+				<header>海螺消息</header>
+				<article></article>
+				<article></article>
+				<article></article>
+				<article></article>
+				<article></article>
+			</section>
+        </aside>
+        <!--  -->
+        {{{block ("cyx")}}}
+	</div>
+	<!-- 底部 -->
+	<footer>
+		<p>Copyright ©2012-2016 次碳酸钴 All rights reserved</p>
+	</footer>
+</body>
+</html>
