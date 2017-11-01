@@ -1,0 +1,81 @@
+{{extend ('./layout.xtpl')}}
+{{#block ('main')}}
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;">文章管理</a></li>
+                    <li class="active">写文章</li>
+                </ol>
+                <div class="settings">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">标题</label>
+                            <div class="col-xs-6">
+                                <input type="text" name="title" class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">摘要</label>
+                            <div class="col-xs-6 ckeditor">
+                                <textarea name="brief" rows="5" class="form-control input-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">内容</label>
+                            <div class="col-xs-6">
+                                <textarea name="content"id="ckeditor" class="form-control input-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-9">
+                                <input type="submit" value="保存" class="btn btn-success btn-sm pull-right">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+          
+
+   
+{{/block}}            
+
+{{#block ('script')}}  
+<script src="/admin/assets/jquery/jquery.min.js"></script>
+<script src="/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/admin/assets/nprogress/nprogress.js"></script>
+<script src="/admin/assets/ckeditor/ckeditor.js"></script>
+<script src="/admin/libs/common.js"></script>
+<script>
+    CKEDITOR.replace('ckeditor', {
+        toolbarGroups: [
+            { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+            { name: 'forms' },
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+            { name: 'styles' },
+            { name: 'colors' }
+        ]
+    });
+    function CKupdate() {
+            for (instance in CKEDITOR.instances)
+                CKEDITOR.instances[instance].updateElement();
+        }
+
+    $('form').on('submit',function () {
+        CKupdate();
+        var formdata = $(this).serialize();
+        //获取表单提交的数据
+        $.ajax({
+            url:'/admin/blog_add',
+            type:'post',
+            data:formdata,
+            success:function(info){
+                alert(info.msg)
+               if(info.code === 10000){
+                location.href = '/admin/blog_list'
+               }
+            }
+        })
+        //禁止表单默认提交
+        return false;
+    })
+
+</script>
+{{/block}}  
