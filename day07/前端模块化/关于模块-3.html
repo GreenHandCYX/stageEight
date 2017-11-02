@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>使用模块进行开发时，需要遵循某些规范,其中require.js是AMD规范的实现</h2>
+    <h2>sea.js是CMD规范的一个实现</h2>
+    <h2>由于require.js的国际化程度，所以学习require.js</h2>
+    <!-- 引入require.js -->
+    <script src="./libs/require.js"></script>
+    <script>
+        //AMD规范要求使用require来引入(加载)某个文件或模块,并会执行
+        //并且require是一个函数
+        //require.js默认认为模块都是以.js结尾的,所以可以省略后缀会自动添加
+
+
+        //AMD规范要求使用define来定义一个模块
+        //并且define是一个函数
+
+
+        //第一个参数必须是数组类型,即使只有一个值
+        //第二个参数是回调函数可以获得模块的返回值
+
+        var abc = '小明';//防止变量污染
+
+        require(['./libs/c'],function(abc){
+            console.log(abc);
+        })
+    </script>
+</body>
+</html>

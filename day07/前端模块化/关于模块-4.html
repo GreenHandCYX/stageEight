@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>使用模块进行开发时，需要遵循某些规范,其中require.js是AMD规范的实现</h2>
+    <h2>sea.js是CMD规范的一个实现</h2>
+    <h2>由于require.js的国际化程度，所以学习require.js</h2>
+    <!-- 引入require.js -->
+    <!-- <script src="./libs/require.js" data-main="./libs/index.js"></script> -->
+    <script src="./libs/require.js" ></script>
+    <script>
+        //关于模块加载路径分不同情况
+        //1.相对路径:默认情况下指相对于当前页面
+            // require(['./a']);
+            //相对路径可以以data-main的路径为参考
+            //设置data-main的值所对应的路径为相对路径的当前
+            //data-main执向一个js文件,这个文件被第一个被执行（入口文件）
+
+
+            //在模块内部也有路径，永远相对于当前模块，跟data-main的值无关
+            // require(['./libs/a'])
+
+
+
+            //通过配置还可以对路径进行调整
+            //还可以通过配置修改模块路径(起个短名)
+            require.config({
+                //配置中的相对路径以当前页面为基准
+                baseUrl:'./js',
+                paths:{
+                    bbb:'test/b'
+                }
+            });
+            require(['./a'])
+
+    </script>
+</body>
+</html>

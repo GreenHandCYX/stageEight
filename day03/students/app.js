@@ -29,7 +29,7 @@ server.on('request',(req,res)=>{
     //获取路由地址
     let {pathname} = url.parse(req.url);
     
-    //此时的路径带/需要处理为./views
+    //此时的路径带/需要处理为./public
     let realPath = path.join('./public',pathname);
     
     //创建渲染方法

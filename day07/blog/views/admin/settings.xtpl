@@ -1,0 +1,120 @@
+{{extend ('./layout.xtpl')}} {{#block ('main')}}
+<div class="settings">
+    <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">头像</label>
+                <div class="col-xs-2 preview">
+                    {{#if (user.avatar)}}
+                    <img src="{{user.avatar}}">
+                    {{else}}
+                    <img src="/admin/images/default.png">
+                    {{/if}}
+                    <input type="file" id="upfile" >
+                    <input type="hidden" name="avatar">
+                    <div class="cover">
+                        <i class="fa fa-upload"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">用户名</label>
+                <div class="col-xs-5">
+                    <input type="text" name="name" value="{{user.name}}" class="form-control input-sm">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">性别</label>
+                <div class="col-xs-3">
+                    <label class="radio-inline">
+            
+                        <input type="radio" value="0" name="gender" {{#if (user.gender===0 )}} checked {{/if}}> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="1" name="gender" {{#if (user.gender===1 )}} checked {{/if}}> 女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">手机号码</label>
+                <div class="col-xs-5">
+                    <input type="text" name="phone" class="form-control input-sm" value="{{user.phone}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">就职公司</label>
+                <div class="col-xs-5">
+                    <input type="text" name="company" class="form-control input-sm" value="{{user.company}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">个人主页</label>
+                <div class="col-xs-5">
+                    <input type="text" name="homepage" class="form-control input-sm" value="{{user.homepage}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-xs-3 control-label">个性签名</label>
+                <div class="col-xs-5 ckeditor">
+                    <textarea rows="5" name="alt" class="form-control input-sm" value="{{user.alt}}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-8">
+                    <input type="submit" value="保存" class="btn btn-success btn-sm pull-right">
+                    <a href="/admin/repass.html" class="btn btn-link btn-sm pull-right">更改密码？</a>
+                </div>
+            </div>
+    </form>
+</div>
+
+{{/block}} {{#block ('script')}}
+<script src="/admin/assets/jquery/jquery.min.js"></script>
+<script src="/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/admin/assets/nprogress/nprogress.js"></script>
+<script src="/admin/libs/common.js"></script>
+<script>
+        $('form').on('submit', function () {
+           
+
+            var $_this = $(this);
+            $.ajax({
+                url: '/admin/update',
+                type: 'post',
+                data: $_this.serialize(),
+                success: function (info) {
+                    if (info.code == 10000) {
+                        alert(info.msg);
+                        return location.href = '/admin';
+                    }
+                    alert(info.msg);
+                    location.reload();
+                }
+            })
+            //阻止默认提交
+            return false;
+        })
+
+
+        //文件上传
+        $('#upfile').on('change',function(){
+            var data  = new FormData;
+            data.append('avatar',this.files[0]);
+            var xhr = new XMLHttpRequest;
+            xhr.open('post','/admin/upfile');
+            xhr.send(data);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status==200){
+                    var data = JSON.parse(xhr.responseText);
+                    if(data.code===10000){
+                        alert(data.msg);
+
+
+                        //给表单值以及显示图片
+                        $('.preview img').attr('src','/'+data.path);
+                        $('input[name=avatar]').val('/'+data.path)
+                    }
+                }
+            }
+        })
+</script>
+{{/block}}
