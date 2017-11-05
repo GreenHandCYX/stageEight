@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <style>
+        .systemInfo {
+            color: red;
+        }
+    </style>
+</head>
+
+<body style="padding:3px;">
+    <h1>WebSocket聊天室 <small>当前在线人数：<span id="count">0</span></small></h1>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">发送消息</div>
+        <div class="panel-body">
+            <label>昵称： </label>
+            <input type="text" name="username" class="form-control" maxlength="20" id="name">
+
+            <br>
+
+            <label>消息：</label>
+            <textarea rows="4" class="form-control" maxlength="250" id="msg"></textarea>
+
+            <br>
+
+            <input type="button" value="发送消息" class="btn btn-primary pull-right" id="btnSend">
+        </div>
+    </div>
+
+    <ul class="list-group" id="msgList">
+        <!-- <li class="list-group-item">
+            <span class="badge">14</span> Cras justo odio
+        </li> -->
+    </ul>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+
+    <script>
+        $(function() {
+         //创建一个访问webSocket的客户端连接
+         var ws = new WebSocket('ws://192.168.199.227:3002');
+         ws.onopen =function(){
+            console.log('创建连接成功')
+         }
+         ws.onmessage = function(e){
+            //通过e.data来获取服务端发送来的消息
+
+            var obj = JSON.parse(e.data);
+            var lis = `
+                <li class="list-group-item">
+                    <span class="badge">${obj.time}</span> 
+                    <strong class="${obj.type == 1 ? 'systemInfo':''}">  ${obj.name}  </strong>   说 ： ${obj.msg}
+                </li>
+                
+                `;
+                    // 讲数据插入到页面中
+                $('#msgList').prepend(lis)
+                $('#count').html(obj.count)
+           
+           
+         }
+
+         //给连通的服务器发送消息
+         $('#btnSend').on('click',function(){
+            var name = $('#name').val().trim();
+            var msg = $('#msg').val().trim();
+
+            if(name.length==0 || msg.length==0){
+               return alert('用户名，信息不能为空');
+            }
+
+            //按钮点击后禁用 
+            $(this).attr('disabled', 'disabled')
+
+            setTimeout(function() {
+                    //1s 后讲按钮打开
+                    $('#btnSend').removeAttr('disabled')
+            }, 1000)
+
+            ws.send(JSON.stringify({
+                name:name,
+                msg:msg
+            }))
+
+
+            //发送信息后清空表单
+            $('#name').val("");
+            $('#msg').val("")
+
+         })
+        })
+    </script>
+</body>
+
+</html>

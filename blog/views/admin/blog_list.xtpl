@@ -1,0 +1,69 @@
+{{extend ('./layout.xtpl')}}
+{{#block ('main')}}
+  <!-- 面包屑 -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="javascript:;">文章管理</a>
+        </li>
+        <li class="active">文章列表</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success btn-sm">搜索</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <tbody>
+                {{#each (lists)}}
+                <tr>
+                    <td width="60" align="center">{{xindex+1}}</td>
+                    <td align="left">
+                        <a class="title" href="javascript:;">{{this.title}}</a>
+                    </td>
+                    <td width="120" align="center">
+                        <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
+                        <a href="javascript:;" data-id="{{this.id}}" class="btn btn-warning btn-xs delete">删除</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/block}}            
+    
+{{#block ('script')}}       
+    <script src="/admin/assets/jquery/jquery.min.js"></script>
+    <script src="/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/assets/nprogress/nprogress.js"></script>
+    <script src="/admin/libs/common.js"></script>
+    <script>
+        //用事件委托减少dom获取，给每个delete绑定事件
+        $('table').on('click','.delete',function(){
+            var id = $(this).attr('data-id');
+            //获取要删除的元素
+            var tr = $(this).parents('tr');
+            $.ajax({
+                url:'/admin/delete',
+                type:'get',
+                data:{id:id},
+                success:function(info){
+                    if(info.code == 10000){
+                        alert(info.msg);
+                        tr.fadeOut(500,function(){
+                            $(this).remove();
+                        });
+                        return;
+                    }
+                    alert(info.msg);
+                    location.reload();
+                }
+            })
+        })
+    </script>
+{{/block}}  
