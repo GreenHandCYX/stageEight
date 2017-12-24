@@ -100,3 +100,40 @@ server.on('request',(req,res)=>{
     res.write('响应主体');
     res.end();
 })
+
+
+
+
+var http =require('http')
+var url = require('url')
+var querystring = require('querystring')
+var app = http.createServer()
+app.listen(3000,err=>{
+	console.log(err);
+	if(!err){
+		
+	}
+})
+app.on('request',function(req,res){
+	
+	req.method
+	req.url
+	req.headers
+	
+	url.parse(req.url,true).query
+	var postdata = '';
+	req.on('data',chunk=>{
+		postdata+=chunk
+	})
+	req.on('end',()=>{
+		querystring.parse(postdata)
+	})
+	
+	res.writeHeader(200,{
+		'Content-Type':'text/html;caharset=UTF-8'
+	})
+	res.write('响应主体')
+	res.end()
+	
+	
+})

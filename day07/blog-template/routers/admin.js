@@ -1,7 +1,7 @@
 let express = require('express');
 //设置主路由
 let admin = express.Router();
-//设置子路由
+
 
 
 //引入post的方法
@@ -31,7 +31,7 @@ var upload = multer({ storage: storage });
 
 
 
-
+//设置子路由
 admin.get('/',(req,res)=>{
     
     res.render('admin/index',{});

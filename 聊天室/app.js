@@ -15,10 +15,10 @@ let http = require('http');
 let server = http.createServer(app);
 
 let WebSocket = require('ws');
-//创建一个基于http的 WebSocket服务器
+//创建一个基于http的 WebSocket服务器实例
 let wss = new WebSocket.Server({ server });
 //监听目标ip的端口 192.168.179.81
-server.listen(3002,'192.168.199.227', function listening() {
+server.listen(3002,'192.168.179.81', function listening() {
   console.log('Listening on %d', server.address().port);
 });
 
@@ -43,7 +43,7 @@ app.use(express.static('views'))
 //当前访问数
   let count = 0;
 
-//客户端访问当前服务器时作监听
+//客户端访问当前服务器时作监听，建立访问连接时
 wss.on('connection', function connection(ws, req) {
   
 
@@ -57,7 +57,7 @@ wss.on('connection', function connection(ws, req) {
   // 	tip:'欢迎访问'
   // }));
 
-  //获取每个客户端的页面id  
+  //获取每个客户端的页面ip
   const ip = req.connection.remoteAddress;
   //来访时可以广播响应信息
   wss.broadcast('系统消息','欢迎'+ip+'来访',1);
@@ -68,7 +68,7 @@ wss.on('connection', function connection(ws, req) {
 
 
 
-
+//ws模块内置方法
   //监听客户端发来的消息
   ws.on('message', function incoming(message) {
   		console.log(ws.clients);
@@ -79,7 +79,8 @@ wss.on('connection', function connection(ws, req) {
       
   	
 
-  });  
+  }); 
+  //ws模块内置方法
   ws.on('close',()=>{
     //客户端断开连接后，应将count--
     count--
